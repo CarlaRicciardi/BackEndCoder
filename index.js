@@ -7,7 +7,7 @@ class Usuario {
     }
     
     getFullName() {
-        console.log(`Nombre completo del usuario: ${nombre} ${apellido}`);
+        console.log(`Nombre completo del usuario: ${this.nombre} ${this.apellido}`);
     }
 
     addMascota(nombreMascota) {
@@ -25,7 +25,7 @@ class Usuario {
     }
 
     getBookNames() {
-        return this.libros.map((busqueda) => busqueda.name)
+        return this.libros.map((busqueda) => busqueda.nombre)
     }
     
 }
