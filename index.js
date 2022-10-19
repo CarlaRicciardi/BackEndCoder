@@ -30,7 +30,7 @@ class Contenedor{
             const data = await fs.promises.readFile('productos.json', 'utf-8')
             const dataParse = JSON.parse(data);
             //lo parseo para convertirlo en array y asi obtener el id mediante find 
-            const product = dataParse.find((product) => product == id);
+            const product = dataParse.find((product) => product.id == id);
             
              if(product) {
                  return product;
@@ -69,9 +69,9 @@ class Contenedor{
 
     async function start() {
     const prodData = new Contenedor("data")
-    prodData.save({title: "lavarropas", price: "500"});
-    const products = await prodData.getAll();
-    console.log(products);
+    // prodData.save({title: "lavarropas", price: "500"});
+    // const products = await prodData.getAll();
+    // console.log(products);
 
     const product = await prodData.getById(1);
     console.log(product);
