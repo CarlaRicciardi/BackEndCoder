@@ -86,9 +86,10 @@ class Contenedor{
     // const deleteAll = await prodData.deleteAll();
     // console.log(deleteAll);
 
-    const borrarPorId = await prodData.deleteById(1);
-    console.log(borrarPorId);
+    // const borrarPorId = await prodData.deleteById(1);
+    // console.log(borrarPorId);
 }
 
 start();
 
+module.exports = Contenedor;
