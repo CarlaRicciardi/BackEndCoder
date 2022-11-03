@@ -3,6 +3,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 const multer = require('multer');
+const morgan = require('morgan');
 
 const Container = require ('./classContenedor/index');
 
@@ -17,21 +18,22 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 //router
 app.use('/api/productos', routerProducts);
+app.use(morgan('dev'));
 
 //form
 app.get("/form", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
 
-//   app.post("/form", (req, res) => {
-//     const body = req.body;
-//     try{
-//         Producto.addProduct(body);
-//         res.json({success: true, error: false})
-//     }catch(err){
-//         res.json({ error:true, e:err})
-//     }
-//   });
+  app.post("/form", (req, res) => {
+    const body = req.body;
+    try{
+        contenedor.save(body);
+        res.json({success: true, error: false})
+    }catch(err){
+        res.json({ error:true, e:err})
+    }
+  });
 
 //config multer
 const storage = multer.diskStorage({

@@ -25,14 +25,14 @@
     <title>form</title>
 </head>
 <body>
-    <form action="/uploadfile" enctype="multipart/form-data" method="POST">
-        <p>Ingresa el nombre del producto: <input type="text" name="nameProduct"></p>
-        <p>Ingresa el precio del producto: <input type="number" name="priceProduct"></p>
-        <p>Ingresa la imagen del producto: <input type="file" name="myFile" /></p>
+    <form action="/api/productos" enctype="multipart/form-data" method="POST">
+        <p>Ingresa el nombre del producto: <input type="text" name="title"></p>
+        <p>Ingresa el precio del producto: <input type="number" name="price"></p>
+        <p>Ingresa la imagen del producto: <input type="file" name="thumbnail" /></p>
 
         <input type="submit" value="Enviar">
         
       
-      </form>
+    </form>
 </body>
 </html>
