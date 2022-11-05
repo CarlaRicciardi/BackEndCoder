@@ -3,21 +3,6 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 const multer = require('multer');
-const morgan = require('morgan');
-
-const Container = require('./classContenedor/index');
-
-const { Router } = express;
-const routerProducts = Router();
-
-const contenedor = new Container('./data/productos.json');
-
-//middlewares
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-//router
-app.use('/api/productos', routerProducts);
-app.use(morgan('dev'));
 
 //config multer
 const storage = multer.diskStorage({
@@ -37,18 +22,34 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+const morgan = require('morgan');
+
+const Container = require('./classContenedor/index');
+
+const { Router } = express;
+const routerProducts = Router();
+
+const contenedor = new Container('./data/productos.json');
+
+//middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+//router
+app.use('/api/productos', routerProducts);
+app.use(morgan('dev'));
+
 //form
 app.get('/form', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-app.post('/api/productos', upload.single('myFile'), (req, res) => {
+app.post('/api/productos', upload.single('thumbnail'), (req, res) => {
   const body = req.body;
   const file = req.file;
   if (!file) {
     res.send({ error: true });
   } else {
-    contenedor.save(body);
+    contenedor.save({ ...body, thumbnail: file ? file.filename : '' });
     res.json({ success: true, error: false });
   }
 });

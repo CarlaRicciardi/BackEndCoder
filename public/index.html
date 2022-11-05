@@ -7,12 +7,14 @@
     <title>form</title>
   </head>
   <body>
-    <form action="/api/productos" method="POST">
+    <form action="/form" enctype="multipart/form-data" method="POST">
       <p>Ingresa el nombre del producto: <input type="text" name="title" /></p>
       <p>
         Ingresa el precio del producto: <input type="number" name="price" />
       </p>
-      <p>Ingresa la imagen del producto: <input type="file" name="myFile" /></p>
+      <p>
+        Ingresa la imagen del producto: <input type="file" name="thumbnail" />
+      </p>
       <input type="submit" value="Enviar" />
     </form>
   </body>
